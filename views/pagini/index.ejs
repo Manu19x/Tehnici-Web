@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <title>Tech Nexus </title>
+    <!-- codificarea în memorie a caracterelor-->
+    
+    <meta name="keywords" content="calculator, placa de baza, placa video, procesor, ram, hdd, ssd, sursa,">
+    <!--cuvintele cheie ale paginii; majoritatea motoarelor de căutare ignoră keywords -->
+    <meta name="description" content="Cel mai bun prieten al calculatorului tau :D">
+    <!-- descrierea paginii, adesea apare sub link când sunt afișate rezultatele căutării -->
+    
+    <%- include("../fragmente/head.ejs") %>
+  
+
+</head>
+
+<body>
+    <%- include("../fragmente/header.ejs") %>
+    
+   
+    <main>
+
+        <div id="grid-pagina">
+
+            <section id="welcome">
+                <h2>Bine ati venit</h2>
+                <button id= "tema" class="btn btn-primary">Schimba Tema</button>
+                <p class="intro">Va multumim ca ne vizitati site-ul. Va oferim o gama variata de produse hardware dar si
+                    de periferice</p>
+                    <div class="link-container">
+                    <a id="link-frumos" href="https://www.example.com">Verifica</a><br><br>
+                    </div>
+                    <br>
+                    <i class="fas fa-wifi fa-pulse"></i> <i class="fas fa-wifi"></i>
+                    
+                <div class="intro-oferte">
+                    <div>Placi video</div>
+                    <div>Procesoare</div>
+                    <div>Rami</div>
+                </div>
+                <p class="anunt">Puteti ridica orice produs de pe site din depozitul nostru din Bucuresti</p>
+                
+
+                <div id="dv-prezentare-1">
+                    <div id="dv-prezentare">
+                        <picture>
+                            <!-- il ia pe primul care se potriveste cu query-ul din media-->
+                            <source srcset="./resurse/imagini/prima.200px.jpg" media="(max-width:800px)">
+                            <source srcset="./resurse/imagini/prima.350px.jpg" media="(max-width:1400px)">
+                            <img src="./resurse/imagini/prima.jpg" alt="text" width="300" height="200">
+                        </picture>
+                        <picture>
+                            <a href="./resurse/imagini/NVIDIA-GeForce-GTX-1070-Ti.jpg" download target="_blank">
+                                <img src="./resurse/imagini/NVIDIA-GeForce-GTX-1070-Ti.jpg" alt="GTX 1070ti" width="300"
+                                    height="200">
+                            </a>
+                            <figcaption>GTX 1070ti</figcaption>
+                        </picture>
+                        <picture>
+                            <a href="./resurse/imagini/intel-core-i5-13600kf-processor-600px-v1.jpg" download
+                                target="_blank">
+                                <img src="./resurse/imagini/intel-core-i5-13600kf-processor-600px-v1.jpg"
+                                    alt="I5 13600kf" width="300" height="200">
+                            </a>
+                            <figcaption>I5 13600kf</figcaption>
+
+                        </picture>
+                        <picture>
+                            <a href="./resurse/imagini/logitech.jpg" download target="_blank">
+                                <img src="./resurse/imagini/logitech.jpg" alt="logitech" width="300" height="200">
+                            </a>
+                            <figcaption>Logitech G703 lightspeed</figcaption>
+
+                        </picture>
+
+                    </div>
+                </div>
+            </section>
+
+            <section id="populare">
+                <h2>Cele mai populare produse</h2>
+                <p>Va recomandam calduros sa va grabiti in cazul in care doriti sa achizitionati unul dintre aceste
+                    produse deoarece acestestea obisnuiesc sa iasa repede de pe stoc
+                    
+                </p>
+                <section>
+                    <h3>Hardware</h3>
+                    <ul>
+                        <li>Placi video</li>
+                        <li>Procesoare</li>
+                        <li>Surse</li>
+                        <li>Memorii RAM</li>
+                        <li>HDD si SSD</li>
+                        <li>Placi de baza</li>
+                    </ul>
+                    <h3>Periferice</h3>
+                    <ul>
+                        <li>Monitoare</li>
+                        <li>Tasturi</li>
+                        <li>Casti</li>
+                        <li>Mouse-uri</li>
+
+                    </ul>
+                </section>
+            </section>
+            <section id="promotii">
+                <h2>Promotii</h2>
+                <article>
+                    <h3 class="titlu">Oferta de nerefuzat</h3>
+                    <p><b>Tech Nexus</b> ofera o <b>reducere de <s>20%</s> <ins>35%</ins></b> la toate produsele in
+                        <b>zile surpriza</b>
+                    </p>
+                    <p>Zilele in care se aplica <b>reducerile</b> vor fi comunicate pe paginile noastre de <b>facebook
+                            si instagram</b></p>
+                            <p>Verifica mereu inainte de a cumpara :D <a class="compari" href="https://www.compari.ro/">Compari</a></p>
+                </article>
+
+            </section>
+         
+            <div id="AG" style="overflow-x: auto;">  <!--Overflow-x:auto pentru cand div-ul isi modifica dimensiunea apare scroll-barul pentru a derula-->
+                <h2>Angajatii lunii</h2>
+                <article>
+                   <table>
+
+                    <caption>1h-Overtime=<b>50 ron bonus</b></caption>
+                    
+                    <thead>
+                        <tr>
+                            <th>Nume</th>
+                            <th>Departament</th>
+                            <th>Overtime</th>
+                            <th>Bonus</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Patrick Munteanu</td>
+                            <td>IT</td>
+                            <td>10 ore</td>
+                            <td>500 ron</td>
+                        </tr>
+                        <tr>
+                            <td>Catalin Ionescu</td>
+                            <td>HR</td>
+                            <td>12 ore</td>
+                            <td>600 ron</td>
+                        </tr>
+                        <tr>
+                            <td>Vlad Ecobescu</td>
+                            <td>IT</td>
+                            <td>6 ore</td>
+                            <td>300 ron</td>
+                        </tr>
+                        <tr>
+                            <td>Vlad Ianosi</td>
+                            <td>Comunicatii</td>
+                            <td>8 ore</td>
+                            <td>400 ore</td>
+                        </tr>
+                    </tbody>
+                   <tfoot>
+                    <tr>
+                        
+                        <td colspan="4">Total bonusuri : 1800 ron</td>
+                    </tr>
+                   </tfoot>
+                   
+                   </table>
+
+                </article>
+                
+            </div>
+
+            <section id="anunturi">
+                <h2>Anunțuri</h2>
+                <p class="imp">FOARTE IMPORTANT!!!</p>
+                <p><time datetime="2022-02-28">28 februarie 2022</time> <strong>Reduceri extra in magazinul
+                        fizic</strong></p>
+                <p><time datetime="2022-12-02">12 februarie 2022</time> Placa video RTX 4090 a iesit de pe stoc</p>
+                <p><time datetime="2022-07-01">7 ianuarie 2022</time> Restoc la toate produsele</p>
+                <p><time datetime="2022-04-01">4 ianuarie 2022</time> S-a redeschis magazinul!</p>
+            </section>
+
+            <section id="lista-utilizatori">
+                <h2>Lista utilizatori online</h2>
+                <article>
+                    <h3 class="titlu">Lista utilizatorilor online</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                        Aperiam, amet consequatur autem sint eaque officiis incidunt non deleniti, consequuntur nam sed
+                        cumque placeat, tempora cupiditate est quibusdam ut beatae.
+                        Reprehenderit?</p>
+                </article>
+            </section>
+
+            <section id="date-site">
+                <h2>Date despre site si server</h2>
+                <article>
+                    <h3 class="titlu">Date despre site si server</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Eligendi labore laboriosam doloremque vero provident tempore,
+                        possimus cumque quae sequi neque dolor quam voluptate nostrum atque magnam amet at ex pariatur.
+                    </p>
+                </article>
+            </section>
+
+            <section id="utilizatori-statistici">
+                <h2>Date despre utilizatori si statistici</h2>
+                <article>
+                    <h3 class="titlu">Date despre utilizatori si statistici</h3>
+                    <p>
+                        Ip: <%- locals.ip %>   <!--##########################################################################-->
+                    </p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Aliquam quos mollitia adipisci tempora maxime dolorum unde aliquid
+                        eos voluptatem voluptatibus autem nihil molestias odit, similique dolorem hic saepe nam numquam?
+                    </p>
+                </article>
+
+            </section>
+            
+
+        </div>
+        <div id="grid-galerie">
+            <% for (let imag of locals.imagini) { 
+                let d = new Date();
+                var v_luni=["ianuarie", "februarie", "martie","aprilie","mai","iunie","iulie","august","septembrie","octombrie","noiembrie","decembrie"]
+               if(imag.luni && imag.luni.includes(v_luni[d.getMonth()])) {
+                
+                %>
+               
+                    <figure>
+                        <picture>
+                            <source srcset="<%- imag.fisier_mediu %>" media="(max-width:1000px)" />
+                            <img src="<%- imag.fisier %>" alt="imagine">
+                        </picture>
+                        <figcaption><%- imag.descriere %></figcaption>
+                    </figure>
+                    <% }  %>
+            <% }  %>
+        </div
+      
+    </main>
+    <hr class="hr">
+     <section id="ghidasamblare">
+        <h2>Ghid asamblare PC</h2>
+        <details>
+            <summary>Pentru ca este la indemana oricui sa isi construiasca singur calculatorul dar totusi cei mai
+                multi apeleaza la un profesionist</summary>
+            <p>Astfel venim in ajutor cu cateva videoclipuri care va pot ajuta daca doriti sa va construiti singur
+                calculatorul</p>
+        </details>
+        <p>Clipuri utile daca doresti sa iti asamblezi un calculator</p> 
+        <div class="container-iframe">
+          <div class="taburi-iframe">
+            <a href="https://www.youtube.com/embed/tA7NmxQX4Oo" target="ifr-video">Tutorial PC GARAGE</a>
+            <a href="https://www.youtube.com/embed/jEP6zamhhMo" target="ifr-video">Greseli la asamblare</a>
+            <a href="https://www.youtube.com/embed/Mmq_fASrTB4" target="ifr-video">Ghid asamblare rapid</a>
+          </div>
+          <iframe name="ifr-video" width="500" height="350" src="https://www.youtube.com/embed/tA7NmxQX4Oo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </section> 
+   <!---  <section id="ghidasamblare">
+        <h2>Ghid asamblare PC</h2>
+        <details>
+          <summary>Pentru ca este la indemana oricui sa isi construiasca singur calculatorul dar totusi cei mai multi apeleaza la un profesionist</summary>
+          <p>Astfel venim in ajutor cu cateva videoclipuri care va pot ajuta daca doriti sa va construiti singur calculatorul</p>
+        </details>
+        <p>Clipuri utile daca doresti sa iti asamblezi un calculator</p> 
+      
+        <div class="link-container">
+          <div class="link-box">
+            <a href="https://www.youtube.com/embed/tA7NmxQX4Oo" target="ifr-video">Tutorial de la colegii nostrii de la PC GARAGE</a>
+          </div>
+          <div class="link-box">
+            <a href="https://www.youtube.com/embed/jEP6zamhhMo" target="ifr-video">Greseli intalnite in asamblarea unui calculator</a>
+          </div>
+          <div class="link-box">
+            <a href="https://www.youtube.com/embed/Mmq_fASrTB4" target="ifr-video">Ghid de asamblare in 2 minute</a>
+          </div>
+        </div>
+      
+        <div class="container-iframe-wrapper">
+          <div class="link-boxes-wrapper">
+             Aici adaugi cele trei casete cu linkuri 
+            <div class="link-box">
+                <a href="https://www.youtube.com/embed/tA7NmxQX4Oo"></a>
+              </div>
+              <div class="link-box">
+                <a href="https://www.youtube.com/embed/jEP6zamhhMo"></a>
+              </div>
+              <div class="link-box">
+                <a href="https://www.youtube.com/embed/Mmq_fASrTB4"></a>
+              </div>
+          </div>
+          <div class="container-iframe">
+            <iframe name="ifr-video" width="800" height="450" src="https://www.youtube.com/embed/tA7NmxQX4Oo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      
+      </section>
+    -->
+    
+
+    
+    <small>Copyright &copy; <time datetime="2023-03-01">1 Martie 2023</time> </small>
+    <a href="#" id="Link-top">
+        <div id="semn">ᐃ</div>
+    </a>
+
+    <%- include("../fragmente/footer.ejs") %>
+
+</body>
+
+
+
+
+</html>

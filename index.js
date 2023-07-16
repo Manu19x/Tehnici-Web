@@ -5,8 +5,26 @@ const sharp=require('sharp');
 const sass=require('sass');
 const ejs=require('ejs');
 const {Client}=require('pg');
+const AccesBD= require("./module_proprii/accesbd.js")
 
-var client= new Client({database:"web",
+const formidable=require("formidable");
+const {Utilizator}=require("./module_proprii/utilizator.js")
+const session=require('express-session');
+const Drepturi = require("./module_proprii/drepturi.js");
+
+
+AccesBD.getInstanta().select(
+    {tabel:"produse",
+     campuri:["nume", "pret", "greutate"],
+     conditiiAnd:["pret>7"]},
+     function(err,rez){
+        console.log(err);
+        console.log(rez);
+     }
+    )
+
+
+  var client= new Client({database:"web2",
         user:"manu19",
         password:"manu19",
         host:"localhost",
@@ -14,13 +32,15 @@ var client= new Client({database:"web",
 client.connect();
 //selecteaza tot din enum
 
-
 /*client.query("select * from lab8_10", function(err, rez){
     console.log("Eroare BD",err);
  
     console.log("Rezultat BD",rez);
 });
 */
+
+
+
 obGlobal={
     obErori:null,
     obImagini:null,
@@ -45,7 +65,7 @@ console.log("Cale fisier", __filename);
 console.log("Director de lucru", process.cwd());
 
 
-vectorFoldere=["temp", "temp1", "backup"]
+vectorFoldere=["temp", "temp1", "backup", "poze_uploadate"]
 for (let folder of vectorFoldere){
     //let caleFolder=__dirname+"/"+folder;
     let caleFolder=path.join(__dirname, folder)
@@ -61,7 +81,7 @@ function compileazaScss(caleScss, caleCss){
     if(!caleCss){
         //let vectorCale=caleScss.split("\\")
         //let numeFisExt=vectorCale[vectorCale.length-1];
-        let numeFisExt=path.basename(caleScss)
+        let numeFisExt=path.basename(caleScss)//obtine calea
         let numeFis=numeFisExt.split(".")[0]   /// "a.scss"  -> ["a","scss"]
         caleCss=numeFis+".css";
     }
@@ -83,9 +103,9 @@ function compileazaScss(caleScss, caleCss){
     if (fs.existsSync(caleCss)){
         fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup,"resurse/css",numeFisCss ))// +(new Date()).getTime()
     }
-    rez=sass.compile(caleScss, {"sourceMap":true});
-    fs.writeFileSync(caleCss,rez.css)
-    console.log("Compilare SCSS",rez);
+    rez=sass.compile(caleScss, {"sourceMap":true}); /// source map pentru a vedea in browser ( exemplu vezi linia x care are proprietatea y)
+    fs.writeFileSync(caleCss,rez.css) //dupa compialre avem sass compilat in rez il scriem in calecss
+   // console.log("Compilare SCSS",rez);
 }
 
 vFisiere=fs.readdirSync(obGlobal.folderScss)
@@ -97,7 +117,7 @@ for(let numeFis of vFisiere){
 }
 
 //compileazaScss("a.scss");
-fs.watch(obGlobal.folderScss, function(eveniment, numeFis){
+fs.watch(obGlobal.folderScss, function(eveniment, numeFis){ /// watch pentru cand se schimba un fisier scss programul il va compila in css :( 
     console.log(eveniment, numeFis);
     if (eveniment=="change" || eveniment=="rename"){
         let caleCompleta=path.join(obGlobal.folderScss, numeFis);
@@ -111,6 +131,11 @@ app.set("view engine","ejs");
 
 app.use("/resurse", express.static(__dirname+"/resurse"));
 app.use("/node_modules", express.static(__dirname+"/node_modules"));
+
+app.use("/*",function(req, res, next){
+    res.locals.optiuniMeniu=obGlobal.optiuniMeniu;
+    next();
+})
 
 app.use(/^\/resurse(\/[a-zA-Z0-9]*)*$/, function(req,res){
     afisareEroare(res,403);
@@ -169,31 +194,35 @@ app.get("*/galerie-animata.css.map",function(req, res){
 
 //--------------------------------------------produse
 app.get("/produse",function(req, res){
-
-
+    //console.log(req.query)
     //TO DO query pentru a selecta toate produsele
     //TO DO se adauaga filtrarea dupa tipul produsului
     //TO DO se selecteaza si toate valorile din enum-ul categ_prajitura
+    client.query("select * from unnest(enum_range(null::categ_produs))", function(err, rezCategorie){
+        if (err){
+            console.log(err);
+        }
+        else{
+            let conditieWhere="";
+            if(req.query.tip)
+                conditieWhere=` where tip_produs='${req.query.tip}'`  //"where tip='"+req.query.tip+"'"
+            
 
-    client.query("select * from unnest(enum_range(null::categ_prajitura))",function(err, rezCategorie){ //selecteaza tot din enum
-       // console.log(err);
-       // console.log(rez);
-       let conditieWhere=""
-       if(req.query.tip)
-             conditieWhere=` where tip_produs='${req.query.tip}'` //"where tip='"+req.query.tip+"'"
-       client.query("select * from prajituri "+conditieWhere , function( err, rez){
-           console.log(300)
-           if(err){
-               console.log(err);
-               afisareEroare(res, 2);
-           }
-           else
-               res.render("pagini/produse", {produse:rez.rows, optiuni:rezCategorie.rows});
-       });
-    })
+            client.query("select * from produse "+conditieWhere , function( err, rez){
+                console.log(300)
+                if(err){
+                    console.log(err);
+                    afisareEroare(res, 2);
+                }
+                else{
+                    console.log(rez);
+                    res.render("pagini/produse", {produse:rez.rows, optiuni:rezCategorie.rows});
+                }
+            });
+            }
+    });
 
-       
-
+        
 
 });
 
@@ -201,7 +230,7 @@ app.get("/produse",function(req, res){
 app.get("/produs/:id",function(req, res){
     console.log(req.params);
    
-    client.query(`select * from prajituri where id= ${req.params.id}`, function( err, rezultat){
+    client.query(`select * from produse where id= ${req.params.id}`, function( err, rezultat){
         if(err){
             console.log(err);
             afisareEroare(res, 2);
@@ -211,7 +240,7 @@ app.get("/produs/:id",function(req, res){
     });
 });
 
-client.query("select * from unnest(enum_range(null::categ_prajitura))",function(err, rez){
+client.query("select * from unnest(enum_range(null::categ_produs))",function(err, rez){
     console.log(err);
     console.log(rez);
 })
@@ -246,6 +275,86 @@ app.get("/*",function(req, res){
             afisareEroare(res);
     }
 })
+
+/// UTILIZATORI
+
+app.post("/inregistrare",function(req, res){
+    var username;
+    var poza;
+    console.log("ceva");
+    var formular= new formidable.IncomingForm()
+    formular.parse(req, function(err, campuriText, campuriFisier ){//4
+        console.log("Inregistrare:",campuriText);
+
+        console.log(campuriFisier);
+        var eroare="";
+
+        var utilizNou=new Utilizator();
+        try{
+            utilizNou.setareNume=campuriText.nume;
+            utilizNou.setareUsername=campuriText.username;
+            utilizNou.email=campuriText.email
+            utilizNou.prenume=campuriText.prenume
+            
+            utilizNou.parola=campuriText.parola;
+            utilizNou.culoare_chat=campuriText.culoare_chat;
+            utilizNou.poza= poza;
+            Utilizator.getUtilizDupaUsername(campuriText.username, {}, function(u, parametru ,eroareUser ){
+                if (eroareUser==-1){//nu exista username-ul in BD
+                    utilizNou.salvareUtilizator();
+                }
+                else{
+                    eroare+="Mai exista username-ul";
+                }
+
+                if(!eroare){
+                    res.render("pagini/inregistrare", {raspuns:"Inregistrare cu succes!"})
+                    
+                }
+                else
+                    res.render("pagini/inregistrare", {err: "Eroare: "+eroare});
+            })
+            
+
+        }
+        catch(e){ 
+            console.log(e);
+            eroare+= "Eroare site; reveniti mai tarziu";
+            console.log(eroare);
+            res.render("pagini/inregistrare", {err: "Eroare: "+eroare})
+        }
+    
+
+
+
+    });
+    formular.on("field", function(nume,val){  // 1 
+	
+        console.log(`--- ${nume}=${val}`);
+		
+        if(nume=="username")
+            username=val;
+    }) 
+    formular.on("fileBegin", function(nume,fisier){ //2
+        console.log("fileBegin");
+		
+        console.log(nume,fisier);
+		//TO DO in folderul poze_uploadate facem folder cu numele utilizatorului
+        let folderUser=path.join(__dirname, "poze_uploadate",username);
+        //folderUser=__dirname+"/poze_uploadate/"+username
+        console.log(folderUser);
+        if (!fs.existsSync(folderUser))
+            fs.mkdirSync(folderUser);
+        fisier.filepath=path.join(folderUser, fisier.originalFilename)
+        poza=fisier.originalFilename
+        //fisier.filepath=folderUser+"/"+fisier.originalFilename
+
+    })    
+    formular.on("file", function(nume,fisier){//3
+        console.log("file");
+        console.log(nume,fisier);
+    }); 
+});
 
 
 function initErori(){

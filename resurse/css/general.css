@@ -1,0 +1,508 @@
+html{
+    font-size: 18px;
+}
+
+
+body{
+    --culoare-principala:#198FE3;
+    --culoare-border:#284B63;
+    --culoare-3:#1370B0;
+    --culoare-4:#5FAEE8;
+    --culoare-5:#0B3D63;
+    --culoare-a:#014034;
+    --culoare-b:#02735E;
+    --culoare-c:#038C73;
+    --culoare-d:#0D0D0D;
+    -culoare-f:#36BFB1;
+    --culoare-11:#012626;
+    --culoare-12:#04BFAD;
+    --culoare-13:#027368;
+    --culoare-14:#01403A;
+
+
+    --spatiere-pagina:50px;
+    --padding-sectiune:15px;
+    --padding-intern:10px;
+}
+
+body.dark{
+  --culoare-principala: var(--culoare-12);
+  --culoare-border: var(--culoare-13);
+  
+}
+body
+{
+padding-left: var(--spatiere-pagina);
+padding-right: var(--spatiere-pagina);
+font-family: 'Roboto', sans-serif;
+background-color: var(--culoare-principala);
+min-width: 450px;
+}
+#grid-pagina > *{
+    border: 3px solid var(--culoare-border);
+    padding: var(--padding-sectiune);
+}
+h1{
+    font-size: 2.5rem;
+}
+h2{
+    font-size: 2rem;
+}
+
+#welcome
+{
+    grid-area: z-welcome;
+}
+#promotii
+{
+    grid-area: z-promotii;
+}
+#populare
+{
+  grid-area: z-populare;
+}
+
+#program
+{
+    grid-area: z-program;
+}
+
+#anunturi
+{
+    grid-area: z-anunturi;
+}
+
+#utilizatori-statistici
+{
+    grid-area: z-utilizatori;
+}
+
+#date-site
+{
+    grid-area: z-date;
+}
+
+#lista-utilizatori
+{
+    grid-area: z-lista;
+}
+
+#program
+{
+    grid-area: z-program;
+}
+
+
+
+#ghidasamblare
+{
+    grid-area: z-ghid;
+ 
+}
+#AG
+{
+    grid-area: z-AG;
+}
+
+
+
+#grid-pagina
+{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas:
+    "z-welcome z-welcome z-welcome"
+    "z-welcome z-welcome z-welcome"
+    
+    "z-populare z-AG z-anunturi"
+    "z-lista z-AG z-anunturi"
+    "z-lista z-utilizatori z-date"
+    
+    "z-promotii z-promotii z-promotii"
+    
+    
+                 ;
+    gap:20px 10px;             
+}
+
+/*
+Pentru a pune casetele cu linkuri deasupra containerului iframe-ului, 
+poți utiliza o diviziune suplimentară și poziționarea absolută. 
+Mai exact, ar trebui să adaugi o diviziune înainte de containerul iframe-ului și să o poziționezi relativ, iar apoi să adaugi o altă diviziune în interiorul acesteia și să o poziționezi absolut. 
+În interiorul celei de-a doua diviziuni poți adăuga cele trei casete cu linkuri.
+*/
+.container-iframe iframe{
+  display: block;
+  width: 100%;
+  border: 7px solid var(--culoare-border);
+
+}
+.container-iframe{
+  width: 40%;
+  margin: 12px;
+}
+.taburi-iframe{
+  display: flex;
+  
+  margin-left: 70px;
+  width: 400px;
+  height: 75px;
+  
+
+}
+.taburi-iframe a {
+  border: 3px solid var(--culoare-border);
+  box-sizing: border-box;
+  margin-right: 10px; /* Adauga o mica distanta intre casetele cu linkuri */
+  display:block;
+  color: var(--culoare-5);
+
+}
+ /* -------------------------------------------------------------------------------------------------------------------------------------------------------- */
+#semn
+{
+  position: absolute;
+  top: 0.35em;
+  right:0.7em;
+  opacity:50%;
+ 
+  
+  
+}
+#Link-top
+{
+  display:block;
+  justify-content: center;
+  align-items: center;
+}
+#semn:hover{
+  transition: all 1s linear;
+  opacity: 100%;
+
+}
+#Link-top {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--culoare-border);
+  background: var(--culoare-4);
+  position:fixed;
+  box-sizing: border-box;
+  bottom: 10px;
+  right: 10px;
+}
+#Link-top:hover{
+  transition: all 0.5s linear;
+  opacity: 100%;
+  box-shadow: 0px 1px 5px 2px #000;
+}
+
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------- */
+  #AG tr:hover{
+    box-shadow: 3px 3px 20px #000;
+    transition: box-shadow 0.5s ease-in-out;
+  }
+  #AG caption{
+    caption-side:bottom;
+  }
+  #AG table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 6px solid var(--culoare-border);
+  }
+  
+  #AG tr {
+    border-bottom: 2px solid var(--culoare-border);
+  }
+  
+  #AG thead tr:first-child {
+    border-bottom: 4px solid var(--culoare-border)
+  }
+  
+  #AG tfoot tr:last-child {
+    border-top: 4px solid var(--culoare-border);
+  }
+  #AG td, th {
+    border: 2px solid var(--culoare-border); 
+  }
+  #AG{
+    min-width: 25%;
+    overflow-x: auto;
+  }
+  #AG td, th {
+    padding: 10px; /* adaugă un padding la celule pentru a le face mai spațioase */
+    text-align: center; /* aliniaza textul celulelor la centru */
+
+  }
+  #AG th, tfoot{
+    background-color: var(--culoare-3);
+  }
+  
+#hamburger{
+  display: none;
+}
+
+  
+  
+
+  /* -------------------------------------------------------------------------------------------------------------------------------------------------------- */
+img{
+    
+    max-width: 400px;
+}
+
+/*.container-iframe
+{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    margin: 12px;
+   
+}
+.taburi-iframe a{
+    width: 200px;
+    height: 200px;
+    padding-bottom: 50px;
+    align-items: flex-start;
+    
+}
+/*
+  
+/*#grid-pagina
+{
+    display: grid;
+    grid-template-columns: 1fr,1fr,1fr;
+    grid-template-areas: 
+    "z-welcome z-welcome z-welcome z-welcome"
+    "z-welcome z-welcome z-welcome z-welcome"
+
+    "z-calendar z-program z-program z-anunturi"
+    "z-lista z-program z-program z-anunturi"
+    "z-lista z-utilizatori z-utilizatori z-date"
+
+    "z-ghid z-ghid z-ghid z-ghid"
+    
+            
+                 ;
+    gap:20px 10px;             
+}
+*/
+#banner{
+  display: none;
+}
+#watermark{
+  display: none;
+}
+@media print{
+   
+  #banner{
+    display: inline-block;
+    position: absolute;
+    top:0;
+    left:10%;
+    width: 80%;
+    overflow: visible;
+    border: 3px dotted black;
+    
+  }
+   nav{
+    display: none;
+  }
+
+  #grid-pagina{
+    display: block;
+  }
+
+  .container-iframe iframe, img, picture, #Link-top{
+    display:none;
+  }
+  
+  h1{
+    page-break-after: always;
+    margin-top:50%;
+    text-align:center;
+    margin-left:1cm;
+  }
+  footer{
+    page-break-before: always;
+    
+  }
+  a{
+    color:inherit;
+    text-decoration: none;
+  }
+  #watermark{
+    display: block;
+    position: fixed;
+    bottom: 0;
+    right:0;
+    color:black;
+    background-color: white;
+    width: 100px;
+    height: 2cm;
+    font-size: 90%;
+    border: 4px double black;
+    opacity: 0.65;
+
+
+  }
+  @page {
+		size: A4 portrait;
+		margin-bottom:2cm;
+		margin-top:2cm;
+		counter-increment: page;
+			
+	}
+	@page:left{
+
+		margin-left:2.5cm;
+		margin-right:0.5cm;
+		border-radius: 20cm;
+	}
+	@page:right{
+
+		margin-right:2.5cm;
+		margin-left:0.5cm;
+	}
+ 
+  
+}
+footer > a{
+  color:var(--culoare-5);
+}
+
+footer > a:visited{
+  color:var(--culoare-4);
+  
+}
+footer > a[href^="http"]::before{
+  content:"⮳";
+  font-size: 1.5em;
+}
+
+
+footer > a[href^="http"]:hover::before {
+  color:var(--culoare-5); 
+}
+
+.compari:active{
+  border:1px solid black;
+}
+.compari{
+  color: white;
+  background-image: radial-gradient(circle at center, var(--culoare-5) 0%, var(--culoare-5) 40%, transparent 80%, transparent 100%);
+  background-size: 0;
+  background-position: center;
+  transition: background-size 1.5s;
+  background-repeat: no-repeat;
+
+}
+.compari:hover {
+  background-size: 100%;
+  
+}
+::cue{
+color:transparent;
+background-image: linear-gradient(to right, var(--culoare-4), var(--culoare-5));
+-webkit-background-clip: text;
+background-clip:text;
+
+}
+
+.video-vtt{
+  width: 50%;
+  min-width: 400px;
+  max-width: 500px;
+}
+
+.despre{
+  font-family: Arial, sans-serif;
+}
+.despre {
+  background-image: url('../../resurse/imagini/wall.jpg');
+  background-attachment: fixed;
+  animation: changeBackground 3s infinite;
+}
+@keyframes changeBackground {
+  0% {
+    background-image: url('../../resurse/imagini/wall.jpg');
+  }
+  50% {
+    background-image: url('../../resurse/imagini/alb.jpg');
+  }
+  100% {
+    background-image: url('../../resurse/imagini/wall.jpg');
+  }
+}
+
+hr {
+  border: none;
+  height: 8.5px;
+  background-color: var(--culoare-d);
+  background-image: linear-gradient(to right, var(--culoare-a),var(--culoare-14), var(--culoare-d));
+}
+
+#lista-utilizatori article{
+    column-count: 2;
+    column-gap: 20px;
+    column-rule: 1px solid var(--culoare-border);
+}
+@media only screen and (max-width: 700px) {
+  #lista-utilizatori{
+    column-count: 1;
+  }
+}
+::selection{
+  color: var(--culoare-12); 
+  background-color: var(--culoare-b); 
+  text-shadow: 1px 1px var(--culoare-c); 
+}
+
+.imp{
+  white-space: nowrap; /* textul sa raman pe o singura linie */
+  overflow: hidden;
+  animation: marquee 5s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.link-container {
+  display: inline-block;
+  position: relative;
+}
+
+.link-container::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--culoare-b); /* Culoarea pătratului */
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.link-container:hover::after {
+  transform: translate(-50%, -50%) scale(1.5);
+  top: 50%;
+  left: 50%;
+  opacity: 0.5; /* Opacitatea */
+}
+
+.link-container a {
+  color: #000; /* Culoarea linkului */
+  text-decoration: none; /* Elimină sublinierea linkului */
+  position: relative;
+  z-index: 1;
+}

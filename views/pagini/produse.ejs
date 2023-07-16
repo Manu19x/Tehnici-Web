@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html  lang="ro">
+    <head>
+        <meta name="description" content="Cel mai bun prieten al calculatorului tau :D">
+        <meta name="keywords" content="calculator, placa de baza, placa video, procesor, ram, hdd, ssd, sursa,">
+        <link rel="stylesheet" href="/resurse/css/produse.css" type="text/css" />
+        <title>Tech Nexus - home</title>
+        <%- include("../fragmente/head") %>     
+        <script type="text/javascript" src=/resurse/js/produse.js></script>
+
+    </head>
+    <body>
+    <%- include("../fragmente/header") %>
+
+    <main>
+        <label> Nume: <input type="text" id="inp-nume"></label>
+        <!--<label> Maxim calorii: <input type="number" id="inp-calorii" value="10000"></label>-->
+        <div> Nota Review:<!-- trebuie sa aiba acelasi name ca sa formeze un grup -->
+            <p><label>Slab Cotat (nota_review &lt; 4) <!--conditie logica-->
+                <input id="i_rad1"  name="gr_rad" value="0:4" type="radio"/>
+            </label></p>
+            <p><label>Mediu Cotat (4 &le; nota_review &lt; 7)
+                <input id="i_rad2"  name="gr_rad" value="4:7" type="radio"/>
+            </label>
+            <p><label>Excelent Cotat (7 &le; nota_review)
+                <input id="i_rad3" name="gr_rad" value="7:10" type="radio"/>
+            </label>
+            <p><label>Toate
+                <input id="i_rad4" checked name="gr_rad" value="toate" type="radio"/>
+            </label>
+        </div>
+
+
+        <label> Pret minim: <input type="range" id="inp-pret" value="0" min="0"  max="600"> <span id="infoRange">(0)</span></label>
+        <label>Select simplu:
+            <select id="inp-categorie">
+                <option id="sel-toate" selected value="toate">toate</option>
+                <% for (let opt of locals.optiuni) { %>
+                    <option value="<%- opt.unnest %>"><%- opt.unnest %> </option> <!--generem optiunile pt select-->
+                <% } %>
+            </select>
+        </label>
+        <p>
+        <button id="filtrare">Filtreaza</button> 
+
+        <button id="resetare">Reseteaza</button><br/>
+        <button id="sortCrescNume">Sorteaza crescator dupa pret si nume</button>
+        <button id="sortDescrescNume">Sorteaza descrescator dupa pret si nume</button>
+        
+        </p>
+        
+        <p id="p-suma">Apăsați Alt+"c" pentru suma preturilor produselor afișate. </p>
+        <section id="produse">
+            <h2>Produse</h2>
+            <div class="grid-produse">
+                <% for( let prod of locals.produse) { %>
+                    <article class="produs" >
+                        <h3 class="nume">Nume: <a href="/produs/<%-prod.id %>" ><span class="val-nume"><%- prod.nume%></span></a></h3>
+                        <div class="info-prod">
+                            <p class="pret">Pret: <span class="val-pret"><%- prod.pret%></span></p>
+                            <p class="nota_review">Nota Review: <span class="val-nota_review"><%- prod.nota_review%></span></p>
+                            <p class="greutate">Greutate: <span class="val-gramaj"><%- prod.greutate%></span></p>
+                        </div>
+                        <p class="categorie">Categorie:<span class="val-categorie"><%- prod.categorie%></span></p>
+                        <figure>
+                            <a href="/produs/<%-prod.id %>" ><img src="/resurse/produse/<%- prod.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
+                        </figure>
+                        <label class="selecteaza-cos">
+                            Selectează:<br/>
+                            <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
+                        </label>
+                    </article>
+                <% }%>
+            </div>
+        </section>
+    </main>
+
+    <%- include("../fragmente/footer") %>
+    </body>
+</html>

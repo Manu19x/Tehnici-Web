@@ -1,0 +1,32 @@
+html{
+    font-size: 14px;
+}
+
+body{
+    --spatiere-pagina: 30px;
+    --padding-sectiune: 10px;
+}
+#grid-pagina{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+    "z-welcome z-welcome"
+    "z-welcome z-welcome"
+     
+    "z-AG z-anunturi"
+    "z-AG z-anunturi"
+
+    "z-populare z-date"
+    "z-lista z-utilizatori"
+    "z-lista z-utilizatori"
+    
+    "z-promotii z-promotii"
+    
+    ;
+    gap:15px 10px;
+}
+
+#grid-pagina
+{
+    border: 7px solid red;
+}

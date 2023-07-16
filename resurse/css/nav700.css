@@ -1,0 +1,43 @@
+body{
+    --inaltime-meniu:40px;
+    --latime-buton:100%;
+}
+
+#hamburger{
+    display: block;
+    margin:0;
+}
+
+#hamburger>img{
+    height: var(--inaltime-meniu);
+    width: auto;
+    margin: 0;
+    display: block;
+}
+
+ul.meniu{
+    display: none;
+}
+
+#ch-menu:checked +ul.meniu{
+    display: block;
+    animation-name: animatie_meniu;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+   
+
+}
+
+@keyframes animatie_meniu{
+     0%{
+        opacity: 0;
+        transform: translateX(-100%) /*duce meniul in afara pe orizontala */
+     }
+
+     100%{
+        opacity: 1;
+        transform: translateX(0);
+     }
+}

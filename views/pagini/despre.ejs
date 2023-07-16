@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <title>Tech Nexus</title>
+    <!-- codificarea în memorie a caracterelor-->
+  
+    <meta name="keywords" content="calculator, placa de baza, placa video, procesor, ram, hdd, ssd, sursa,">
+    <!--cuvintele cheie ale paginii; majoritatea motoarelor de căutare ignoră keywords -->
+    <meta name="description" content="Cel mai bun prieten al calculatorului tau :D">
+    <!-- descrierea paginii, adesea apare sub link când sunt afișate rezultatele căutării -->
+    
+    <%- include("../fragmente/head.ejs") %>
+  
+
+</head>
+
+<body class="despre">
+    <%- include("../fragmente/header.ejs") %>
+   
+    <main>
+     <h2>Alta pagina</h2>
+
+     <video class="video-vtt" width="420" height="300" controls preload="auto" poster="/resurse/imagini/4090.jpg">
+        <source src="/resurse/videoclipuri/video.mp4" type="video/mp4">
+        <source src="/resurse/videoclipuri/video.ogv" type="video/ogv">
+        
+        <track default src="/resurse/vtt/mesaje_ro.vtt" kind="captions" srclang="ro" label="romana" />
+        <track  src="/resurse/vtt/mesaje_en.vtt" kind="captions" srclang="en" label="engleza" />
+        
+     </video>
+
+   
+    
+    
+   
+  
+    <%- include("../fragmente/footer.ejs") %>
+
+</body>
+
+
+
+
+</html>
